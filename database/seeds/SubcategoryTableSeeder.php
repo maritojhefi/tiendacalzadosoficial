@@ -13,27 +13,7 @@ class SubcategoryTableSeeder extends Seeder
     public function run()
     {
         Subcategoria::truncate();
-        Subcategoria::create([
-            'nombre'=>"Nuevas",
-            'detalle'=>"Estado a estrenar",
-           
-        ]);
-        Subcategoria::create([
-           'nombre'=>"Seminuevas",
-           'detalle'=>"Con poco tiempo de uso",
-          
-       ]);
-      
-       Subcategoria::create([
-        'nombre'=>"Originales",
-        'detalle'=>"De marca prestigiosa",
        
-    ]);
-    Subcategoria::create([
-        'nombre'=>"Imitacion",
-        'detalle'=>"Imitaciones",
-       
-    ]);
     Subcategoria::create([
         'nombre'=>"Para hombre",
         'detalle'=>"Solo para varones",
@@ -44,11 +24,7 @@ class SubcategoryTableSeeder extends Seeder
         'detalle'=>"Solo damas",
        
     ]);
-    Subcategoria::create([
-        'nombre'=>"Unisex",
-        'detalle'=>"Para ambos sexos",
-       
-    ]);
+   
   
     Subcategoria::create([
         'nombre'=>"Para ninos",

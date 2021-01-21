@@ -23,7 +23,7 @@
 <a href="{{route('IndexUsers')}}" class="dropdown-item">Registros Totales</a>
 <a class="dropdown-item" href="{{route('user.index')}}">Usuarios</a>
 <a class="dropdown-item" href="{{route('importarShow')}}">Importar Registros</a>
-
+asdasds
 
 @endif
 
