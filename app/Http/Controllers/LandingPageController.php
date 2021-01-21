@@ -30,8 +30,17 @@ class LandingPageController extends Controller
 
     public function indexPersonalizado(Request $request, Categoria $categoria){
         $categorias =DB::table('categorias')->get();
-     $productimages=DB::table('product_images')->get();
-        $productos=Product::where('category_id','=',$categoria->id)->where('estado','=','concesionado')->orwhere('estado','=','aprobado')->paginate(10);
-        return view('dashboard.vista_general.accesorios',['productos'=>$productos,'categorias'=>$categorias,'imagenes'=> $productimages]);
+        $productimages=DB::table('product_images')->get();
+      
+           $productos=Product::where([
+               ['category_id','=',$categoria->id],
+               ['estado', '=', 'aprobado'],
+           ])->orWhere([
+               ['category_id','=',$categoria->id],
+               ['estado', '=', 'concesionado'],
+           ])->paginate(10);
+           
+           $cantidad=$productos->count();
+            return view('dashboard.vista_general.accesorios',['productos'=>$productos,'categorias'=>$categorias,'imagenes'=> $productimages]);
     }
 }
