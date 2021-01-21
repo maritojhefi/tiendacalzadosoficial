@@ -20,16 +20,17 @@
           <p>Dashboard</p>
         </a>
       </li>
+      <li class="nav-item {{ Request::path()=='dashboard/cat' ? 'active':''}}">
+        <a class="nav-link" href="{{route('cat.index')}}">
+         
+          <p>Categorias</p>
+        </a>
+      </li>
       @endif
     
      
      
-     <li class="nav-item {{ Request::path()=='dashboard/cat' ? 'active':''}}">
-       <a class="nav-link" href="{{route('cat.index')}}">
-        
-         <p>Categorias</p>
-       </a>
-     </li>
+    
      <li class="nav-item {{ Request::path()=='dashboard/user' ? 'active':''}}">
        <a class="nav-link" href="{{route('user.index')}}">
         
@@ -44,6 +45,12 @@
           <p>Ventas</p>
         </a>
       </li>
+      <li class="nav-item {{ Request::path()=='dashboard/contador/pagados' ? 'active':''}}">
+        <a class="nav-link" href="{{route('pagados')}}">
+         
+          <p>Pagados</p>
+        </a>
+      </li>
        @endif
      
        <li class="nav-item {{ Request::path()=='dashboard/producto' ? 'active':''}}">
@@ -52,7 +59,12 @@
            <p>Productos</p>
          </a>
        </li>
-      
+       <li class="nav-item {{ Request::path()=='dashboard/historial' ? 'active':''}}">
+        <a class="nav-link" href="{{route('comprados')}}">
+          
+          <p>Historial</p>
+        </a>
+      </li>
        <li class="nav-item dropdown ml-auto">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Bienvenid@! {{auth()->user()->name}}

@@ -43,7 +43,7 @@
             <div class="form-group dropdown">
                 <label for="category_id" class="bmd-label-floating"> Subcategorias</label>
                
-          <select multiple name="subcategory_id[]" class="form-control col-6 " id="category_id" >
+          <select multiple name="subcategory_id[]" class=" col-6" id="category_id" >
           
             @foreach ($listSubcategorias  as $nombre=>$id)
             <option {{in_array($id, old('subcategory_id')?:$producto->subcategorias->pluck('id')->toArray()) ?"selected":"" }}  class="dropdown-item" aria-labelledby="dropdownMenuButton" value="{{$id}}">{{$nombre}}</option>

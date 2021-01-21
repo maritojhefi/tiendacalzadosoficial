@@ -42,7 +42,6 @@
  
 </div> 
 <script src="{{asset("js/app.js")}}"></script>
-<script src="{{asset("dashboard/js/core/bootstrap-material-design.min.js")}}"></script>
 <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
 <script>
   $(document).ready(function () {

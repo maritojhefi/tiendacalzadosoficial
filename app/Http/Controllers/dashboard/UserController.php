@@ -37,7 +37,8 @@ class UserController extends Controller
     {
         $listRols=Rol::pluck('id','nombre','detalle');
 
-         return view("dashboard.user.create",['user'=>new User(),'listRols'=>$listRols]);
+        $creacion=true;
+         return view("dashboard.user.create",['user'=>new User(),'listRols'=>$listRols,'creacion'=>$creacion]);
     }
 
     /**
@@ -79,9 +80,12 @@ class UserController extends Controller
     {
         $listRols=Rol::pluck('id','nombre','detalle');
         $pass=$user->password;
-        return view('dashboard.user.edit',["user"=>$user,'listRols'=>$listRols,"password"=>$pass]);
+        $creacion=false;
+
+        return view('dashboard.user.edit',["user"=>$user,'listRols'=>$listRols,"password"=>$pass,'creacion'=>$creacion]);
     }
 
+  
     /**
      * Update the specified resource in storage.
      *

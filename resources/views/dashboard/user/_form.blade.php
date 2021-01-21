@@ -25,7 +25,7 @@
 
           </select>
             </div>
-            @if (auth()->user()->rol_id==3)
+            @if (auth()->user()->rol_id==3 && $creacion == false)
          
             @else
             <div class="form-group">

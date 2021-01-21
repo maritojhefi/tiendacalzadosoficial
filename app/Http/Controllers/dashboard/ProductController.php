@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\User;
 use App\Venta;
+use App\Comment;
 use App\Product;
 use App\Categoria;
 use App\ProductImage;
@@ -109,6 +110,7 @@ class ProductController extends Controller
 
     public function rechazado(Request $request)
     {
+       
         DB::table('products')
               ->where('id', $request->id)
               ->update(['comentario' => $request->comentario]);
@@ -142,9 +144,11 @@ class ProductController extends Controller
         if($estado->estado=="null"){
             $estado->estado="aprobado";
             $estado->comentario="";
+            
         }
         else if($estado->estado=="aprobado"){
             $estado->estado="rechazado";
+          
         }
         else if($estado->estado=="rechazado"){
             $estado->estado="concesionado";
@@ -155,6 +159,7 @@ class ProductController extends Controller
             $estado->comentario="";
         }
         $estado->save();
+       
 return response()->json($estado->estado);
     }
     /**
@@ -182,7 +187,36 @@ return response()->json($estado->estado);
     {
         return view ('dashboard.productos.show',["producto"=>$producto]);
     }
+    public function comments(Product $product)
+    {
+        $comentarios=Comment::where('product_id',$product->id)->get();
+        $total=$comentarios->count();
+        $comentador = User::all();
+        return view ('dashboard.productos.showcomments',['total'=>$total,"product"=>$product,'comentarios'=>$comentarios,'comentador'=>$comentador]);
+    }
 
+    public function pagados()
+    {
+        $users=User::where('cash','!=','0')->orderBy('id','desc')->paginate(8);
+       $total=$users->count();
+        return view('dashboard.user.indexcash',['users'=>$users,'total'=>$total]);
+    }
+    public function historialcomprados()
+    {
+        $productos=Product::all();
+        $usuarios=User::all();
+        $comprados=Venta::where('comprador_id',auth()->user()->id)->get();
+        $total=$comprados->count();
+        return view ('dashboard.transacciones.index',['total'=>$total,"comprados"=>$comprados,'productos'=>$productos,'usuarios'=>$usuarios]);
+
+    }
+    public function respondercoment(Request $request)
+    {
+        DB::table('comments')
+        ->where('id', $request->id_comentario)
+        ->update(['response' => $request->respuesta]);
+        return back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
